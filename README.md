@@ -9,7 +9,9 @@ All datasets are provided in the "Dataset" folder for viscosity, octanol–water
 The prediction scripts can be executed using the following commands:
 
 python Mol2Vec_CATBoost-Organic-Solvents_Viscosity.py      # for viscosity predictions
+
 python Mol2Vec_CATBoost-Organic-Solvents_LogP.py           # for partition coefficient predictions
+
 python Mol2Vec_CATBoost-Organic-Solvents_Viscosity.py      # for enthalpy of vaporization predictions
 
 Repeat the same procedure for other molecular featurization technuques (e.g., Morgan fingerprints, DFT, Sigma profiles, D-MPNN, and ChemBERTa) by modifying the scripts.
