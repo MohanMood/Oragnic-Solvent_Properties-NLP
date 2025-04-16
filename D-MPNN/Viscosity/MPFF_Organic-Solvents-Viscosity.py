@@ -18,7 +18,7 @@ torch.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
 pl.seed_everything(SEED, workers=True)
 
-# Reading organic solvents viscosity data
+# loading organic solvents viscosity data
 input_dir = 'path-of-the-dataset/'
 dataset = pd.read_csv(input_dir + 'Oragnic-Solvents_Viscosity.csv', encoding='unicode_escape')
 
@@ -36,7 +36,7 @@ all_data = [
     )
 ]
 
-# Split Data with fixed seed
+# Split Data
 mols = [d.mol for d in all_data]
 train_indices, val_indices, test_indices = data.make_split_indices(mols, "random", (0.7, 0.1, 0.2), SEED)
 train_data, val_data, test_data = data.split_data_by_indices(all_data, train_indices, val_indices, test_indices)
@@ -62,7 +62,6 @@ ffn_input_dim = mp.output_dim + temperature_values.shape[1]
 ffn = nn.MveFFN(output_transform=output_transform, input_dim=ffn_input_dim)
 X_d_transform = nn.ScaleTransform.from_standard_scaler(temperature_values_scaler)
 mpnn = models.MPNN(mp, agg, ffn, batch_norm=False, X_d_transform=X_d_transform)
-
 
 # Monitoring Setup
 monitor_metric = "val_loss"
