@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 from catboost import CatBoostRegressor
 
-# Reading organic solvents viscosity data
+# loading organic solvents viscosity data
 input_dir = 'path-of-the-dataset/'
 dataset = pd.read_csv(input_dir + 'Oragnic-Solvents_Viscosity.csv', encoding='unicode_escape')
 
@@ -28,8 +28,6 @@ def morgan_fingerprints(smiles, radius=2, n_bits=2048):
     fingerprints = [AllChem.GetMorganFingerprintAsBitVect(mol, radius, nBits=n_bits) for mol in mols]
     fingerprints_array = [list(fp) for fp in fingerprints]
     return pd.DataFrame(fingerprints_array)
-
-# Function call to calculate Morgan fingerprints
 fingerprints_df = morgan_fingerprints(dataset['CANON_SMILES'])
 
 # Merge fingerprints into the dataset
