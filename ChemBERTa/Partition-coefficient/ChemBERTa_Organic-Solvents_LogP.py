@@ -35,16 +35,14 @@ dataset = dataset[['SMILES', 'Exp_logp']]
 X = dataset['SMILES']
 y = dataset['Exp_logp']
 
-# Split the data into training and testing sets
+# Split the data into training, validation, and testing datasets
 X_temp, X_test, y_temp, y_test = train_test_split(X, y, test_size=0.2, random_state=seed)
 X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=0.125, random_state=seed)
 
-# Create training, validation, and testing datasets
 train_dataset = pd.concat([X_train, y_train], axis=1)
 val_dataset = pd.concat([X_val, y_val], axis=1)
 test_dataset = pd.concat([X_test, y_test], axis=1)
 
-# Save them to CSV
 train_dataset.to_csv('LogP_train_dataset.csv', index=False)
 val_dataset.to_csv('LogP_val_dataset.csv', index=False)
 test_dataset.to_csv('LogP_test_dataset.csv', index=False)
@@ -167,7 +165,7 @@ print("Mean Absolute Error:", mean_absolute_error(test_results.label_ids, test_r
 print("Root Mean Squared Error:", math.sqrt(mean_squared_error(test_results.label_ids, test_results.predictions)))
 print("R^2 Score:", r2_score(test_results.label_ids, test_results.predictions))
 
-# Plot exp vs pred in test set
+# Plot exp vs pred
 plt.figure()
 ln = np.arange(min(test_results.label_ids), max(test_results.label_ids), 0.2)
 plt.plot(ln, ln, 'r--')
