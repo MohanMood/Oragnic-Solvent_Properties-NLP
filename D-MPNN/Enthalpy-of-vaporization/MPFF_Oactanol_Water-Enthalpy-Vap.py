@@ -18,7 +18,7 @@ torch.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
 pl.seed_everything(SEED, workers=True)
 
-# Load Dataset
+# Load enthakpy of vaporization dataset
 input_dir = 'path-of-the-dataset/'
 dataset = pd.read_csv(input_dir + 'Organic-solvents_Enthalpy-of-vaporization.csv')
 print(dataset.shape)
