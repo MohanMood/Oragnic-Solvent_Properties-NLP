@@ -29,22 +29,20 @@ dataset = pd.read_csv(input_dir + 'Organic-solvents_Enthalpy-of-vaporization.csv
 dataset = dataset.drop_duplicates(subset=['SMILES']).sort_values(by='SMILES')
 print("Initial dataset shape:", dataset.shape)
 
-# Select relevant columns
+# Select relevant columns for X and Y
 dataset = dataset[['SMILES', 'enthalpy_vap']]
 
 X = dataset['SMILES']
 y = dataset['enthalpy_vap']
 
-# Split the data into training and testing sets
+# Split the data into training, validation, and testing datasets
 X_temp, X_test, y_temp, y_test = train_test_split(X, y, test_size=0.2, random_state=536)
 X_train, X_val, y_train, y_val = train_test_split(X_temp, y_temp, test_size=0.125, random_state=536)
 
-# Create training, validation, and testing datasets
 train_dataset = pd.concat([X_train, y_train], axis=1)
 val_dataset = pd.concat([X_val, y_val], axis=1)
 test_dataset = pd.concat([X_test, y_test], axis=1)
 
-# Save them to CSV
 train_dataset.to_csv('Enthalpy-Vap_train_dataset.csv', index=False)
 val_dataset.to_csv('Enthalpy-Vap_val_dataset.csv', index=False)
 test_dataset.to_csv('Enthalpy-Vap_test_dataset.csv', index=False)
@@ -67,7 +65,7 @@ tokenized_datasets = dataset.map(tokenize_function, batched=True)
 # Add labels to the tokenized datasets
 tokenized_datasets = tokenized_datasets.map(lambda x: {'labels': x['dvap']})
 
-# Prepare datasets for training
+# Prepare datasets for training and testing
 small_train_dataset = tokenized_datasets["train"]
 small_eval_dataset = tokenized_datasets["validation"]
 small_test_dataset = tokenized_datasets["test"]
@@ -78,7 +76,7 @@ small_eval_dataset.to_csv('Enthalpy-Vap_val_ChemBERTa_dataset.csv', index=False)
 small_test_dataset.to_csv('Enthalpy-Vap_test_ChemBERTa_dataset.csv', index=False)
 
 # Define model
-model = AutoModelForSequenceClassification.from_pretrained("seyonec/ChemBERTa-zinc-base-v1", num_labels=1)
+model = AutoModelForSequenceClassification.from_pretrained("seyonec/ChemBERTa-zinc-base-v1", num_labels=1) 
 
 # Define metrics
 mae_metric = evaluate.load("mae")
@@ -166,7 +164,7 @@ print("Mean Absolute Error:", mean_absolute_error(test_results.label_ids, test_r
 print("Root Mean Squared Error:", math.sqrt(mean_squared_error(test_results.label_ids, test_results.predictions)))
 print("R^2 Score:", r2_score(test_results.label_ids, test_results.predictions))
 
-# Plot exp vs pred in test set
+# Plot exp vs pred
 plt.figure()
 ln = np.arange(min(test_results.label_ids), max(test_results.label_ids), 0.2)
 plt.plot(ln, ln, 'r--')
