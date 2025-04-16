@@ -17,7 +17,7 @@ torch.manual_seed(seed)
 np.random.seed(seed)
 random.seed(seed)
 
-# Load Dataset
+# Load partition  coefficient dataset
 input_dir = 'path-of-the-dataset/'
 dataset = pd.read_csv(input_dir + 'Organic-Solvents_LogP.csv')
 print(dataset.shape)
