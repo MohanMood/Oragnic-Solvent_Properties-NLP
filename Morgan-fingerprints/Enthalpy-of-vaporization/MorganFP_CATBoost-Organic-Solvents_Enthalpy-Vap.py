@@ -22,9 +22,6 @@ dataset = pd.read_csv(input_dir + 'Organic-solvents_Enthalpy-of-vaporization.csv
 dataset = dataset.drop_duplicates(subset=['SMILES']).sort_values(by='SMILES')
 print("Initial dataset shape:", dataset.shape)
 
-# Select relevant columns
-dataset = dataset[['SMILES', 'enthalpy_vap']]
-
 X = dataset['SMILES']
 y = dataset['enthalpy_vap']
 
@@ -34,8 +31,6 @@ def morgan_fingerprints(smiles, radius=2, n_bits=2048):
     fingerprints = [AllChem.GetMorganFingerprintAsBitVect(mol, radius, nBits=n_bits) for mol in mols]
     fingerprints_array = [list(fp) for fp in fingerprints]
     return pd.DataFrame(fingerprints_array)
-
-# Function call to calculate Morgan fingerprints
 fingerprints_df = morgan_fingerprints(dataset['SMILES'])
 print("Morgan fingerprints dataset shape:", fingerprints_df.shape)
 
