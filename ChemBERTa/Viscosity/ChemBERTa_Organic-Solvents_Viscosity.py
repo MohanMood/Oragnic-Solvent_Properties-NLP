@@ -21,18 +21,15 @@ torch.manual_seed(seed)
 np.random.seed(seed)
 random.seed(seed)
 
-# Load dataset
+# Load viscosity dataset
 input_dir = 'path-of-the-dataset/'
 dataset = pd.read_csv(input_dir + 'Oragnic-Solvents_Viscosity.csv', encoding='unicode_escape')
-
-# Select relevant columns and first 100 data points
-dataset = dataset[['CANON_SMILES', 'Temperature (K)', 'log_visc']]
 
 # Splitting features and target
 X = dataset[['CANON_SMILES', 'Temperature (K)']]
 y = dataset['log_visc']
 
-# Split the data into training and testing sets
+# Split the data into training, validation, and testing datasets
 X_trva, X_test, y_trva, y_test = train_test_split(X, y, test_size=0.2, random_state=seed)
 X_train, X_val, y_train, y_val = train_test_split(X_trva, y_trva, test_size=0.125, random_state=seed)
 
@@ -174,7 +171,7 @@ print("Mean Absolute Error:", mean_absolute_error(test_results.predictions, test
 print("Root Mean Squared Error:", math.sqrt(mean_squared_error(test_results.predictions, test_results.label_ids)))
 print("R^2 Score:", r2_score(test_results.predictions, test_results.label_ids))
 
-# Plot exp vs pred in test set
+# Plot exp vs pred
 plt.figure()
 ln = np.arange(min(test_results.label_ids), max(test_results.label_ids), 0.2)
 plt.plot(ln, ln, 'r--')
