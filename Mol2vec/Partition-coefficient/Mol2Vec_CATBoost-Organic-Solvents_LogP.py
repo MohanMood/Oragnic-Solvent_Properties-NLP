@@ -17,7 +17,7 @@ from gensim.models import word2vec
 from sklearn import preprocessing
 from catboost import CatBoostRegressor
 
-# Loading organic solvents Partition coefficient data
+# Loading organic solvents partition coefficient (logP) data
 input_dir = 'path-of-the-dataset/'
 dataset = pd.read_csv(input_dir + 'Organic-Solvents_LogP.csv')
 
@@ -35,7 +35,7 @@ model = word2vec.Word2Vec.load(model_path)
 os_smiles = [Chem.MolFromSmiles(x) for x in mol_smiles]
 os_sentences = [mol2alt_sentence(x, 1) for x in os_smiles]
 
-# Define the DfVec class if not already defined
+# Define the DfVec class 
 class DfVec:
     def __init__(self, vector):
         self.vector = vector
