@@ -18,6 +18,7 @@ Same procedure for other molecular featurization technuques (e.g., Morgan finger
 
 ## LM-GAN Model
 Please download the LM-GAN model from https://zenodo.org/records/8387351
+
 The generated new molecular sequences (SMILES) are provided in LM-GAN folder
 
 ## instant Similarity (iSIM)
