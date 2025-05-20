@@ -18,4 +18,4 @@ The prediction scripts can be executed using the following commands:
 Repeat the same procedure for other molecular featurization technuques (e.g., Morgan fingerprints, DFT, Sigma profiles, D-MPNN, and ChemBERTa) by modifying the scripts.
 
 ## Please Cite
-Mohan M, Guggilam S, Kidder MK, Smith JC. Natural Language Processing in Molecular Chemistry: Property Predictions for Organic Compounds. Communication Chemistry, 2025, DOI:
+Mohan M, Guggilam S, Bhowmik D, Kidder MK, Smith JC. Natural Language Processing in Molecular Chemistry: Property Predictions for Organic Compounds. Green Chemistry, 2025, DOI:
