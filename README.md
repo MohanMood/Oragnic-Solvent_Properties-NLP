@@ -14,8 +14,13 @@ The prediction scripts can be executed using the following commands:
 
 *python Mol2Vec_CATBoost-Organic-Solvents_Vaporization-Enthalpy.py*      # for enthalpy of vaporization predictions
 
+Same procedure for other molecular featurization technuques (e.g., Morgan fingerprints, DFT, Sigma profiles, D-MPNN, and ChemBERTa) by modifying the scripts.
 
-Repeat the same procedure for other molecular featurization technuques (e.g., Morgan fingerprints, DFT, Sigma profiles, D-MPNN, and ChemBERTa) by modifying the scripts.
+## LM-GAN Model
+Please download the LM-GAN model from https://zenodo.org/records/8387351
+
+## instant Similarity (iSIM)
+Please download it from https://github.com/mqcomplab/iSIM
 
 ## Please Cite
 Mohan M, Guggilam S, Bhowmik D, Kidder MK, Smith JC. Natural Language Processing in Molecular Chemistry: Property Predictions for Organic Compounds. Green Chemistry, 2025, DOI:
